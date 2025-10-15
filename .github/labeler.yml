@@ -1,11 +1,7 @@
 backend:
-  - "src/main/java/**"
+  - "SupportServer/src/main/java/**"
 
-frontend:
-  - "src/main/resources/static/**"
-  - "src/main/resources/templates/**"
-  - "frontend/**"
-  - "client/**"
+
 
 docs:
   - "docs/**"
@@ -21,50 +17,50 @@ infra:
   - "kubernetes/**"
 
 database:
-  - "src/main/resources/db/**"
-  - "src/main/resources/migration/**"
-  - "**/*migration*.sql"
-  - "**/*schema*.sql"
+  - "SupportServer/src/main/resources/db/**"
+  - "SupportServer/src/main/resources/migration/**"
+  - "SupportServer/**/*migration*.sql"
+  - "SupportServer/**/*schema*.sql"
 
 # 백엔드 레이어별 라벨
 layer:entity:
-  - "src/main/java/**/entity/**"
-  - "src/main/java/**/domain/**"
-  - "src/main/java/**/model/**"
+  - "SupportServer/src/main/java/**/entity/**"
+  - "SupportServer/src/main/java/**/domain/**"
+  - "SupportServer/src/main/java/**/model/**"
 
 layer:controller:
-  - "src/main/java/**/controller/**"
-  - "src/main/java/**/api/**"
+  - "SupportServer/src/main/java/**/controller/**"
+  - "SupportServer/src/main/java/**/api/**"
 
 layer:dto:
-  - "src/main/java/**/dto/**"
-  - "src/main/java/**/request/**"
-  - "src/main/java/**/response/**"
+  - "SupportServersrc/main/java/**/dto/**"
+  - "SupportServer/src/main/java/**/request/**"
+  - "SupportServer/src/main/java/**/response/**"
 
 layer:repository:
-  - "src/main/java/**/repository/**"
-  - "src/main/java/**/dao/**"
+  - "SupportServersrc/main/java/**/repository/**"
+  - "SupportServer/src/main/java/**/dao/**"
 
 layer:service:
-  - "src/main/java/**/service/**"
+  - "SupportServer/src/main/java/**/service/**"
 
 layer:util:
-  - "src/main/java/**/util/**"
-  - "src/main/java/**/helper/**"
-  - "src/main/java/**/common/**"
+  - "SupportServer/src/main/java/**/util/**"
+  - "SupportServer/src/main/java/**/helper/**"
+  - "SupportServer/src/main/java/**/common/**"
 
 layer:config:
-  - "src/main/java/**/config/**"
-  - "src/main/java/**/configuration/**"
+  - "SupportServer/src/main/java/**/config/**"
+  - "SupportServer/src/main/java/**/configuration/**"
 
 layer:test:
-  - "src/test/**"
-  - "**/*Test.java"
-  - "**/*Tests.java"
+  - "SupportServer/src/test/**"
+  - "SupportServer/**/*Test.java"
+  - "SupportServer/**/*Tests.java"
 
 layer:resource:
-  - "src/main/resources/**/*.yml"
-  - "src/main/resources/**/*.yaml"
-  - "src/main/resources/**/*.properties"
-  - "src/main/resources/**/*.xml"
-  - "src/main/resources/**/*.json"
+  - "SupportServer/src/main/resources/**/*.yml"
+  - "SupportServer/src/main/resources/**/*.yaml"
+  - "SupportServer/src/main/resources/**/*.properties"
+  - "SupportServer/src/main/resources/**/*.xml"
+  - "SupportServer/src/main/resources/**/*.json"
