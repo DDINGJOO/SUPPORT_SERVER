@@ -84,10 +84,67 @@ public class Report {
         }
     }
 
+    //== 연관관계 편의 메서드 ==//
+
+    /**
+     * 카테고리 설정
+     */
+    public void setCategory(ReportCategory category) {
+        this.category = category;
+        if (category != null) {
+            this.referenceType = category.getId().getReferenceType();
+            this.reportCategory = category.getId().getReportCategory();
+        }
+    }
+
+    //== 비즈니스 로직 ==//
+
     /**
      * 신고 상태 변경
      */
     public void changeStatus(ReportStatus newStatus) {
         this.status = newStatus;
+    }
+
+    /**
+     * 신고 승인 (제재 적용)
+     */
+    public void approve() {
+        this.status = ReportStatus.APPROVED;
+    }
+
+    /**
+     * 신고 거부 (기각)
+     */
+    public void reject() {
+        this.status = ReportStatus.REJECTED;
+    }
+
+    /**
+     * 신고 철회
+     */
+    public void withdraw() {
+        this.status = ReportStatus.WITHDRAWN;
+    }
+
+    /**
+     * 검토 시작
+     */
+    public void startReview() {
+        this.status = ReportStatus.REVIEWING;
+    }
+
+    /**
+     * 신고 상태가 대기 중인지 확인
+     */
+    public boolean isPending() {
+        return this.status == ReportStatus.PENDING;
+    }
+
+    /**
+     * 신고 상태가 승인되었는지 확인
+     */
+    public boolean isApproved() {
+        return this.status == ReportStatus.APPROVED;
     }
 }

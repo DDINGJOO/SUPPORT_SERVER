@@ -77,6 +77,20 @@ public class Sanction {
         }
     }
 
+    //== 연관관계 편의 메서드 ==//
+
+    /**
+     * 신고 설정
+     */
+    public void setReport(Report report) {
+        this.report = report;
+        if (report != null && this.targetId == null) {
+            this.targetId = report.getReportedId();
+        }
+    }
+
+    //== 비즈니스 로직 ==//
+
     /**
      * 제재 취소
      */
@@ -97,5 +111,33 @@ public class Sanction {
     public boolean isActive() {
         return status == SanctionStatus.ACTIVE &&
                 (expiresAt == null || expiresAt.isAfter(LocalDateTime.now()));
+    }
+
+    /**
+     * 제재가 만료되었는지 확인
+     */
+    public boolean isExpired() {
+        return status == SanctionStatus.EXPIRED ||
+                (expiresAt != null && expiresAt.isBefore(LocalDateTime.now()));
+    }
+
+    /**
+     * 제재가 영구 정지인지 확인
+     */
+    public boolean isPermanent() {
+        return sanctionType == SanctionType.PERMANENT_BAN || expiresAt == null;
+    }
+
+    /**
+     * 남은 제재 일수 계산
+     */
+    public long getRemainingDays() {
+        if (expiresAt == null) {
+            return -1; // 영구
+        }
+        if (expiresAt.isBefore(LocalDateTime.now())) {
+            return 0; // 만료됨
+        }
+        return java.time.temporal.ChronoUnit.DAYS.between(LocalDateTime.now(), expiresAt);
     }
 }

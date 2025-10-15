@@ -29,8 +29,13 @@ public class ReportHistory {
     @Column(length = 100)
     @Comment("이력 ID")
     private String historyId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+	
+	/**
+	 * -- SETTER --
+	 *  신고 설정
+	 */
+	@Setter
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "report_id", nullable = false, foreignKey = @ForeignKey(name = "fk_report_history_report"))
     @Comment("신고 ID")
     private Report report;
@@ -69,8 +74,12 @@ public class ReportHistory {
         }
     }
 
+    //== 연관관계 편의 메서드 ==//
+	
+	//== 생성 메서드 (팩토리 메서드) ==//
+
     /**
-     * 신고 이력 생성 팩토리 메서드
+     * 상태 변경 이력 생성
      */
     public static ReportHistory createStatusChangeHistory(
             String historyId,
@@ -87,6 +96,78 @@ public class ReportHistory {
                 .previousStatus(previousStatus)
                 .newStatus(newStatus)
                 .actionType(ActionType.STATUS_CHANGED)
+                .comment(comment)
+                .build();
+    }
+
+    /**
+     * 검토 완료 이력 생성
+     */
+    public static ReportHistory createReviewedHistory(
+            String historyId,
+            Report report,
+            String adminId,
+            String comment
+    ) {
+        return ReportHistory.builder()
+                .historyId(historyId)
+                .report(report)
+                .adminId(adminId)
+                .actionType(ActionType.REVIEWED)
+                .comment(comment)
+                .build();
+    }
+
+    /**
+     * 제재 적용 이력 생성
+     */
+    public static ReportHistory createSanctionAppliedHistory(
+            String historyId,
+            Report report,
+            String adminId,
+            String comment
+    ) {
+        return ReportHistory.builder()
+                .historyId(historyId)
+                .report(report)
+                .adminId(adminId)
+                .actionType(ActionType.SANCTION_APPLIED)
+                .comment(comment)
+                .build();
+    }
+
+    /**
+     * 담당자 할당 이력 생성
+     */
+    public static ReportHistory createAssignedHistory(
+            String historyId,
+            Report report,
+            String adminId,
+            String comment
+    ) {
+        return ReportHistory.builder()
+                .historyId(historyId)
+                .report(report)
+                .adminId(adminId)
+                .actionType(ActionType.ASSIGNED)
+                .comment(comment)
+                .build();
+    }
+
+    /**
+     * 코멘트 추가 이력 생성
+     */
+    public static ReportHistory createCommentAddedHistory(
+            String historyId,
+            Report report,
+            String adminId,
+            String comment
+    ) {
+        return ReportHistory.builder()
+                .historyId(historyId)
+                .report(report)
+                .adminId(adminId)
+                .actionType(ActionType.COMMENT_ADDED)
                 .comment(comment)
                 .build();
     }
