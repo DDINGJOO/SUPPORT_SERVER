@@ -33,16 +33,17 @@ layer:controller:
   - "SupportServer/src/main/java/**/api/**"
 
 layer:dto:
-  - "SupportServersrc/main/java/**/dto/**"
+  - "SupportServer/src/main/java/**/dto/**"
   - "SupportServer/src/main/java/**/request/**"
   - "SupportServer/src/main/java/**/response/**"
 
 layer:repository:
-  - "SupportServersrc/main/java/**/repository/**"
+  - "SupportServer/src/main/java/**/repository/**"
   - "SupportServer/src/main/java/**/dao/**"
 
 layer:service:
   - "SupportServer/src/main/java/**/service/**"
+
 
 layer:util:
   - "SupportServer/src/main/java/**/util/**"
