@@ -1,6 +1,7 @@
 package com.teambind.supportserver.report.entity.embeddable;
 
 import com.teambind.supportserver.report.entity.enums.ReferenceType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,8 +20,10 @@ import java.util.Objects;
 public class ReportCategoryId implements Serializable {
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "reference_type")
     private ReferenceType referenceType;
 
+    @Column(name = "report_category")
     private String reportCategory;
 
     @Override

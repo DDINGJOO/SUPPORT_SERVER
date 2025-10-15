@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8089
 spring:
   kafka:
     bootstrap-servers: ${KAFKA_URL1},${KAFKA_URL2},${KAFKA_URL3}
@@ -32,7 +32,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
 
     properties:
       hibernate:
