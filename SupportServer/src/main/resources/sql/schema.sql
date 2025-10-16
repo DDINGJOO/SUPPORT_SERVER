@@ -21,7 +21,7 @@ CREATE TABLE report (
                                 REFERENCES report_categories(report_category, reference_type),
 
                         CONSTRAINT uk_report_per_user
-                            UNIQUE KEY (reporter_id, reference_type, reported_id),
+                            UNIQUE KEY (reporter_id, reference_type, reported_id, status),
 
                         INDEX idx_report_reporter_id (reporter_id),
                         INDEX idx_report_reported_id (reported_id),
@@ -114,3 +114,11 @@ INSERT INTO report_categories (reference_type, report_category) VALUES
 ('ARTICLE', '타업체를 광고한 게시글'),
 ('ARTICLE', '허위 사기성 내용'),
 ('ARTICLE', '기타');
+
+ALTER TABLE report
+    DROP INDEX uk_report_per_user;
+
+-- status 컬럼을 포함하는 유니크 제약 추가
+ALTER TABLE report
+    ADD CONSTRAINT uk_report_per_user
+        UNIQUE KEY (reporter_id, reference_type, reported_id, status);
