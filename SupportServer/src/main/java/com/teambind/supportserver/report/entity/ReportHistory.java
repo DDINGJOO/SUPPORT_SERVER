@@ -2,6 +2,7 @@ package com.teambind.supportserver.report.entity;
 
 import com.teambind.supportserver.report.entity.enums.ActionType;
 import com.teambind.supportserver.report.entity.enums.ReportStatus;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Comment;
@@ -45,12 +46,12 @@ public class ReportHistory {
     private String adminId;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length = 20, nullable = true)
     @Comment("이전 상태")
     private ReportStatus previousStatus;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(nullable = true, length = 20)
     @Comment("새 상태")
     private ReportStatus newStatus;
 
