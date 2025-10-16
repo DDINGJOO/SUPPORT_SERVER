@@ -155,11 +155,54 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     @Transactional
-    public void withdrawReport(String reportId, String reporterId) {
+    public void withdrawReport(String reportId, String reporterId, String reason) {
         Report report = findReportEntity(reportId);
-        report.withdraw(reporterId, "신고자가 직접 철회", idGenerator::generateId);
+        report.withdraw(reporterId, reason != null ? reason : "신고자가 직접 철회", idGenerator::generateId);
 
-        log.info("Report withdrawn: reportId={}, reporterId={}", reportId, reporterId);
+        log.info("Report withdrawn: reportId={}, reporterId={}, reason={}", reportId, reporterId, reason);
+    }
+
+    @Override
+    @Transactional
+    public void withdrawReport(String reportId, String reporterId) {
+        withdrawReport(reportId, reporterId, "신고자가 직접 철회");
+    }
+
+    @Override
+    @Transactional
+    public void startReview(String reportId, String adminId) {
+        Report report = findReportEntity(reportId);
+        report.startReview(adminId, "검토 시작", idGenerator::generateId);
+
+        log.info("Review started: reportId={}, adminId={}", reportId, adminId);
+    }
+
+    @Override
+    @Transactional
+    public void holdReport(String reportId, String adminId, String reason) {
+        Report report = findReportEntity(reportId);
+        report.hold(adminId, reason != null ? reason : "보류 처리", idGenerator::generateId);
+
+        log.info("Report held: reportId={}, adminId={}, reason={}", reportId, adminId, reason);
+    }
+
+    @Override
+    public ReportResponse createReport(String reporterId, String reportedId, ReferenceType referenceType, String reportCategory, String reason) {
+        ReportRequest request = ReportRequest.builder()
+                .reporterId(reporterId)
+                .reportedId(reportedId)
+                .referenceType(referenceType)
+                .reportCategory(reportCategory)
+                .reason(reason)
+                .build();
+
+        Report report = createReport(request);
+        return ReportResponse.from(report);
+    }
+
+    @Override
+    public ReportResponse getReport(String reportId) {
+        return getReportById(reportId);
     }
 
     /**
