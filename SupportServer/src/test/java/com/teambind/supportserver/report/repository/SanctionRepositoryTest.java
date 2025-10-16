@@ -12,6 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
+import com.teambind.supportserver.report.config.QueryDslConfig;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -25,6 +27,7 @@ import static org.assertj.core.api.Assertions.*;
  * SanctionRepository 통합 테스트
  */
 @DataJpaTest
+@Import(QueryDslConfig.class)
 @ActiveProfiles("test")
 @DisplayName("SanctionRepository 통합 테스트")
 class SanctionRepositoryTest {

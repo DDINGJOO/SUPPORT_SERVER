@@ -1,5 +1,6 @@
 package com.teambind.supportserver.report.repository;
 
+import com.teambind.supportserver.report.config.QueryDslConfig;
 import com.teambind.supportserver.report.entity.Report;
 import com.teambind.supportserver.report.entity.ReportCategory;
 import com.teambind.supportserver.report.entity.embeddable.ReportCategoryId;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -25,6 +27,7 @@ import static org.assertj.core.api.Assertions.*;
  */
 @DataJpaTest
 @ActiveProfiles("test")
+@Import(QueryDslConfig.class)
 @DisplayName("ReportRepository 통합 테스트")
 class ReportRepositoryTest {
 
@@ -189,7 +192,7 @@ class ReportRepositoryTest {
 
         // when
         Report foundReport = reportRepository.findById("REPORT-006").orElseThrow();
-        foundReport.approve();
+        foundReport.approve("ADMIN-001", "승인 테스트", () -> "HISTORY-001");
         reportRepository.save(foundReport);
         entityManager.flush();
         entityManager.clear();
@@ -197,6 +200,7 @@ class ReportRepositoryTest {
         // then
         Report updatedReport = reportRepository.findById("REPORT-006").orElseThrow();
         assertThat(updatedReport.getStatus()).isEqualTo(ReportStatus.APPROVED);
+        assertThat(updatedReport.getHistories()).isNotEmpty();
     }
 
 	
