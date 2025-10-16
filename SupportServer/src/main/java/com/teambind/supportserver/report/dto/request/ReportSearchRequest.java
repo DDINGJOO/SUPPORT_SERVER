@@ -2,6 +2,8 @@ package com.teambind.supportserver.report.dto.request;
 
 import com.teambind.supportserver.report.entity.enums.ReferenceType;
 import com.teambind.supportserver.report.entity.enums.ReportStatus;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 /**
@@ -26,6 +28,9 @@ public class ReportSearchRequest {
 
     // 커서 페이징
     private String cursor;                 // 커서 (마지막 항목의 ID 또는 정렬 기준 값)
+    
+    @Min(value = 1, message = "페이지 크기는 최소 1 이상이어야 합니다")
+    @Max(value = 100, message = "페이지 크기는 최대 100까지 가능합니다")
     private Integer size;                  // 페이지 크기 (기본값: 20)
 
     public enum SortType {
