@@ -15,12 +15,25 @@ import java.util.List;
 public interface ReportService {
 
     /**
-     * 신고 등록
+     * 신고 등록 (개별 파라미터)
+     */
+    ReportResponse createReport(String reporterId, String reportedId, com.teambind.supportserver.report.entity.enums.ReferenceType referenceType, String reportCategory, String reason);
+
+    /**
+     * 신고 등록 (DTO)
      *
      * @param request 신고 요청 DTO
      * @return 등록된 신고 엔티티
      */
     Report createReport(ReportRequest request);
+
+    /**
+     * 신고 상세 조회
+     *
+     * @param reportId 신고 ID
+     * @return 신고 응답 DTO
+     */
+    ReportResponse getReport(String reportId);
 
     /**
      * 신고 상세 조회
@@ -86,6 +99,32 @@ public interface ReportService {
      *
      * @param reportId   신고 ID
      * @param reporterId 신고자 ID (본인 확인용)
+     * @param reason     철회 사유
+     */
+    void withdrawReport(String reportId, String reporterId, String reason);
+
+    /**
+     * 신고 철회
+     *
+     * @param reportId   신고 ID
+     * @param reporterId 신고자 ID (본인 확인용)
      */
     void withdrawReport(String reportId, String reporterId);
+
+    /**
+     * 신고 검토 시작
+     *
+     * @param reportId 신고 ID
+     * @param adminId  처리한 관리자 ID
+     */
+    void startReview(String reportId, String adminId);
+
+    /**
+     * 신고 보류
+     *
+     * @param reportId 신고 ID
+     * @param adminId  처리한 관리자 ID
+     * @param reason   보류 사유
+     */
+    void holdReport(String reportId, String adminId, String reason);
 }
