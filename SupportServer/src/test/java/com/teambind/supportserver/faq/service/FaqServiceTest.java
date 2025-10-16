@@ -130,8 +130,8 @@ class FaqServiceTest {
     void refreshCache_Success() {
         // given
         List<Faq> newFaqs = List.of(
-                createFaq(1L, FaqCategory.RESERVATION, "새 질문1", "새 답변1"),
-                createFaq(2L, FaqCategory.PAYMENT, "새 질문2", "새 답변2")
+                createFaq(1L, FaqCategory.RESERVATION, "새 제목1", "새 질문1", "새 답변1"),
+                createFaq(2L, FaqCategory.PAYMENT, "새 제목2", "새 질문2", "새 답변2")
         );
         given(faqRepository.findAll()).willReturn(testFaqs).willReturn(newFaqs);
 
@@ -264,7 +264,7 @@ class FaqServiceTest {
     void getFaqsByCategory_NonExistentCategory() {
         // given
         List<Faq> onlyReservationFaqs = List.of(
-                createFaq(1L, FaqCategory.RESERVATION, "예약 질문", "예약 답변")
+                createFaq(1L, FaqCategory.RESERVATION, "예약 제목", "예약 질문", "예약 답변")
         );
         given(faqRepository.findAll()).willReturn(onlyReservationFaqs);
         faqService.refreshCache();
@@ -280,18 +280,19 @@ class FaqServiceTest {
 
     private List<Faq> createTestFaqs() {
         return List.of(
-                createFaq(1L, FaqCategory.RESERVATION, "예약은 어떻게 하나요?", "앱에서 예약 가능합니다."),
-                createFaq(2L, FaqCategory.CHECK_IN, "체크인 시간은 언제인가요?", "오후 3시부터 가능합니다."),
-                createFaq(3L, FaqCategory.PAYMENT, "결제 수단은 무엇이 있나요?", "카드와 계좌이체가 가능합니다."),
-                createFaq(4L, FaqCategory.REVIEW_REPORT, "리뷰는 어떻게 작성하나요?", "이용 후 앱에서 작성 가능합니다."),
-                createFaq(5L, FaqCategory.ETC, "문의는 어디로 하나요?", "고객센터로 문의해주세요.")
+                createFaq(1L, FaqCategory.RESERVATION, "예약 관련", "예약은 어떻게 하나요?", "앱에서 예약 가능합니다."),
+                createFaq(2L, FaqCategory.CHECK_IN, "체크인 안내", "체크인 시간은 언제인가요?", "오후 3시부터 가능합니다."),
+                createFaq(3L, FaqCategory.PAYMENT, "결제 방법", "결제 수단은 무엇이 있나요?", "카드와 계좌이체가 가능합니다."),
+                createFaq(4L, FaqCategory.REVIEW_REPORT, "리뷰 작성", "리뷰는 어떻게 작성하나요?", "이용 후 앱에서 작성 가능합니다."),
+                createFaq(5L, FaqCategory.ETC, "문의 방법", "문의는 어디로 하나요?", "고객센터로 문의해주세요.")
         );
     }
 
-    private Faq createFaq(Long id, FaqCategory category, String question, String answer) {
+    private Faq createFaq(Long id, FaqCategory category, String title, String question, String answer) {
         return Faq.builder()
                 .id(id)
                 .category(category)
+                .title(title)
                 .question(question)
                 .answer(answer)
                 .createdAt(LocalDateTime.now())

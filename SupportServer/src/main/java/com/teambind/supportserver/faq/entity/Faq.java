@@ -28,6 +28,10 @@ public class Faq {
     @Comment("FAQ 카테고리")
     private FaqCategory category;
 
+    @Column(nullable = false, length = 200)
+    @Comment("제목")
+    private String title;
+
     @Column(nullable = false, length = 500)
     @Comment("질문")
     private String question;

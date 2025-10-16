@@ -70,7 +70,7 @@ class FaqControllerTest {
     @DisplayName("FAQ 목록 조회 - RESERVATION 카테고리로 필터링")
     void getFaqs_WithReservationCategory() throws Exception {
         // given
-        List<Faq> faqs = List.of(createFaq(1L, FaqCategory.RESERVATION, "예약은 어떻게 하나요?", "앱에서 예약 가능합니다."));
+        List<Faq> faqs = List.of(createFaq(1L, FaqCategory.RESERVATION, "예약 관련", "예약은 어떻게 하나요?", "앱에서 예약 가능합니다."));
         given(faqService.getFaqsByCategory(FaqCategory.RESERVATION)).willReturn(faqs);
 
         // when & then
@@ -88,7 +88,7 @@ class FaqControllerTest {
     @DisplayName("FAQ 목록 조회 - CHECK_IN 카테고리로 필터링")
     void getFaqs_WithCheckInCategory() throws Exception {
         // given
-        List<Faq> faqs = List.of(createFaq(2L, FaqCategory.CHECK_IN, "체크인 시간은 언제인가요?", "오후 3시부터 가능합니다."));
+        List<Faq> faqs = List.of(createFaq(2L, FaqCategory.CHECK_IN, "체크인 안내", "체크인 시간은 언제인가요?", "오후 3시부터 가능합니다."));
         given(faqService.getFaqsByCategory(FaqCategory.CHECK_IN)).willReturn(faqs);
 
         // when & then
@@ -105,7 +105,7 @@ class FaqControllerTest {
     @DisplayName("FAQ 목록 조회 - PAYMENT 카테고리로 필터링")
     void getFaqs_WithPaymentCategory() throws Exception {
         // given
-        List<Faq> faqs = List.of(createFaq(3L, FaqCategory.PAYMENT, "결제 수단은 무엇이 있나요?", "카드와 계좌이체가 가능합니다."));
+        List<Faq> faqs = List.of(createFaq(3L, FaqCategory.PAYMENT, "결제 방법", "결제 수단은 무엇이 있나요?", "카드와 계좌이체가 가능합니다."));
         given(faqService.getFaqsByCategory(FaqCategory.PAYMENT)).willReturn(faqs);
 
         // when & then
@@ -122,7 +122,7 @@ class FaqControllerTest {
     @DisplayName("FAQ 목록 조회 - REVIEW_REPORT 카테고리로 필터링")
     void getFaqs_WithReviewReportCategory() throws Exception {
         // given
-        List<Faq> faqs = List.of(createFaq(4L, FaqCategory.REVIEW_REPORT, "리뷰는 어떻게 작성하나요?", "이용 후 앱에서 작성 가능합니다."));
+        List<Faq> faqs = List.of(createFaq(4L, FaqCategory.REVIEW_REPORT, "리뷰 작성", "리뷰는 어떻게 작성하나요?", "이용 후 앱에서 작성 가능합니다."));
         given(faqService.getFaqsByCategory(FaqCategory.REVIEW_REPORT)).willReturn(faqs);
 
         // when & then
@@ -139,7 +139,7 @@ class FaqControllerTest {
     @DisplayName("FAQ 목록 조회 - ETC 카테고리로 필터링")
     void getFaqs_WithEtcCategory() throws Exception {
         // given
-        List<Faq> faqs = List.of(createFaq(5L, FaqCategory.ETC, "문의는 어디로 하나요?", "고객센터로 문의해주세요."));
+        List<Faq> faqs = List.of(createFaq(5L, FaqCategory.ETC, "문의 방법", "문의는 어디로 하나요?", "고객센터로 문의해주세요."));
         given(faqService.getFaqsByCategory(FaqCategory.ETC)).willReturn(faqs);
 
         // when & then
@@ -201,6 +201,7 @@ class FaqControllerTest {
                 Faq.builder()
                         .id(1L)
                         .category(FaqCategory.RESERVATION)
+                        .title("예약 관련")
                         .question("예약은 어떻게 하나요?")
                         .answer("앱에서 예약 가능합니다.")
                         .createdAt(now)
@@ -215,6 +216,7 @@ class FaqControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").exists())
                 .andExpect(jsonPath("$[0].category").exists())
+                .andExpect(jsonPath("$[0].title").exists())
                 .andExpect(jsonPath("$[0].question").exists())
                 .andExpect(jsonPath("$[0].answer").exists())
                 .andExpect(jsonPath("$[0].createdAt").exists())
@@ -227,18 +229,19 @@ class FaqControllerTest {
 
     private List<Faq> createTestFaqs() {
         return List.of(
-                createFaq(1L, FaqCategory.RESERVATION, "예약은 어떻게 하나요?", "앱에서 예약 가능합니다."),
-                createFaq(2L, FaqCategory.CHECK_IN, "체크인 시간은 언제인가요?", "오후 3시부터 가능합니다."),
-                createFaq(3L, FaqCategory.PAYMENT, "결제 수단은 무엇이 있나요?", "카드와 계좌이체가 가능합니다."),
-                createFaq(4L, FaqCategory.REVIEW_REPORT, "리뷰는 어떻게 작성하나요?", "이용 후 앱에서 작성 가능합니다."),
-                createFaq(5L, FaqCategory.ETC, "문의는 어디로 하나요?", "고객센터로 문의해주세요.")
+                createFaq(1L, FaqCategory.RESERVATION, "예약 관련", "예약은 어떻게 하나요?", "앱에서 예약 가능합니다."),
+                createFaq(2L, FaqCategory.CHECK_IN, "체크인 안내", "체크인 시간은 언제인가요?", "오후 3시부터 가능합니다."),
+                createFaq(3L, FaqCategory.PAYMENT, "결제 방법", "결제 수단은 무엇이 있나요?", "카드와 계좌이체가 가능합니다."),
+                createFaq(4L, FaqCategory.REVIEW_REPORT, "리뷰 작성", "리뷰는 어떻게 작성하나요?", "이용 후 앱에서 작성 가능합니다."),
+                createFaq(5L, FaqCategory.ETC, "문의 방법", "문의는 어디로 하나요?", "고객센터로 문의해주세요.")
         );
     }
 
-    private Faq createFaq(Long id, FaqCategory category, String question, String answer) {
+    private Faq createFaq(Long id, FaqCategory category, String title, String question, String answer) {
         return Faq.builder()
                 .id(id)
                 .category(category)
+                .title(title)
                 .question(question)
                 .answer(answer)
                 .createdAt(LocalDateTime.now())
