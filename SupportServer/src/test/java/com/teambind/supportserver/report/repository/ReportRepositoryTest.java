@@ -1,6 +1,6 @@
 package com.teambind.supportserver.report.repository;
 
-import com.teambind.supportserver.report.config.QueryDslConfig;
+import com.teambind.supportserver.common.config.QueryDslConfig;
 import com.teambind.supportserver.report.entity.Report;
 import com.teambind.supportserver.report.entity.ReportCategory;
 import com.teambind.supportserver.report.entity.embeddable.ReportCategoryId;

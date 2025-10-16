@@ -1,5 +1,7 @@
 package com.teambind.supportserver.report.utils;
 
+import com.teambind.supportserver.common.utils.IdGenerator;
+import com.teambind.supportserver.common.utils.Snowflake;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;

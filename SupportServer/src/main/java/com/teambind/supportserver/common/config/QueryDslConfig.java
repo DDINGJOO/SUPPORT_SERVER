@@ -1,4 +1,4 @@
-package com.teambind.supportserver.report.config;
+package com.teambind.supportserver.common.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

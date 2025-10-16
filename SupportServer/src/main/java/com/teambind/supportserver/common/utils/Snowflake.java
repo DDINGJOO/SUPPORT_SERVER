@@ -1,4 +1,4 @@
-package com.teambind.supportserver.report.utils;
+package com.teambind.supportserver.common.utils;
 
 
 import lombok.RequiredArgsConstructor;
