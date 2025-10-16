@@ -1,8 +1,6 @@
 backend:
   - "SupportServer/src/main/java/**"
 
-
-
 docs:
   - "docs/**"
   - "*.md"
@@ -43,7 +41,6 @@ layer:repository:
 
 layer:service:
   - "SupportServer/src/main/java/**/service/**"
-
 
 layer:util:
   - "SupportServer/src/main/java/**/util/**"
