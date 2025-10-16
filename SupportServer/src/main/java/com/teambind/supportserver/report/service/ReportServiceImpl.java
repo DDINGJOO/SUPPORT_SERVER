@@ -11,7 +11,7 @@ import com.teambind.supportserver.report.entity.enums.ReportStatus;
 import com.teambind.supportserver.report.exceptions.ErrorCode;
 import com.teambind.supportserver.report.exceptions.ReportException;
 import com.teambind.supportserver.report.repository.ReportRepository;
-import com.teambind.supportserver.report.utils.IdGenerator;
+import com.teambind.supportserver.common.utils.IdGenerator;
 import com.teambind.supportserver.report.utils.ReportCategoryCache;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

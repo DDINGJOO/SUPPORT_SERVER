@@ -1,6 +1,7 @@
 package com.teambind.supportserver.report.config;
 
-import com.teambind.supportserver.report.utils.IdGenerator;
+import com.teambind.supportserver.common.config.IdConfig;
+import com.teambind.supportserver.common.utils.IdGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

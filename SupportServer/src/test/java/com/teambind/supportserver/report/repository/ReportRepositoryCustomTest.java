@@ -1,7 +1,7 @@
 package com.teambind.supportserver.report.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.teambind.supportserver.report.config.QueryDslConfig;
+import com.teambind.supportserver.common.config.QueryDslConfig;
 import com.teambind.supportserver.report.dto.request.ReportSearchRequest;
 import com.teambind.supportserver.report.entity.Report;
 import com.teambind.supportserver.report.entity.ReportCategory;

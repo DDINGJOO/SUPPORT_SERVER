@@ -4,7 +4,7 @@ import com.teambind.supportserver.inquiries.entity.Inquiry;
 import com.teambind.supportserver.inquiries.entity.InquiryCategory;
 import com.teambind.supportserver.inquiries.entity.InquiryFile;
 import com.teambind.supportserver.inquiries.entity.InquiryStatus;
-import com.teambind.supportserver.report.config.QueryDslConfig;
+import com.teambind.supportserver.common.config.QueryDslConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
