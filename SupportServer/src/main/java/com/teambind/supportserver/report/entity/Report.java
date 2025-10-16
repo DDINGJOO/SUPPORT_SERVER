@@ -170,6 +170,13 @@ public class Report {
     }
 
     /**
+     * 보류 처리
+     */
+    public void hold(String adminId, String comment, java.util.function.Supplier<String> historyIdGenerator) {
+        changeStatus(ReportStatus.PENDING, adminId, comment, historyIdGenerator);
+    }
+
+    /**
      * 히스토리 추가 (연관관계 편의 메서드)
      */
     private void addHistory(ReportHistory history) {
