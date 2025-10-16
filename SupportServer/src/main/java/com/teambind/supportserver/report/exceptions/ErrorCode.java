@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode {
-	
+	REPORT_NOT_FOUND("REPORT_NOT_FOUND", "Report Not Found", HttpStatus.NOT_FOUND),
 	;
 	private final String errCode;
 	private final String message;
