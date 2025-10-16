@@ -16,6 +16,7 @@ import lombok.*;
 @Builder
 public class ReportCategory {
 
+	
     @EmbeddedId
     private ReportCategoryId id;
 

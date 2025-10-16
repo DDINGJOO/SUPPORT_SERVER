@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * 신고 리포지토리
  */
 @Repository
-public interface ReportRepository extends JpaRepository<Report, String> {
+public interface ReportRepository extends JpaRepository<Report, String>, ReportRepositoryCustom {
 
 }
