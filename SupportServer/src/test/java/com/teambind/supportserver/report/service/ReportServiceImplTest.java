@@ -12,7 +12,7 @@ import com.teambind.supportserver.report.entity.enums.ReportStatus;
 import com.teambind.supportserver.report.exceptions.ErrorCode;
 import com.teambind.supportserver.report.exceptions.ReportException;
 import com.teambind.supportserver.report.repository.ReportRepository;
-import com.teambind.supportserver.report.utils.IdGenerator;
+import com.teambind.supportserver.common.utils.IdGenerator;
 import com.teambind.supportserver.report.utils.ReportCategoryCache;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
