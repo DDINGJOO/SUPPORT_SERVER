@@ -1,5 +1,6 @@
 package com.teambind.supportserver.inquiries.service;
 
+import com.teambind.supportserver.common.utils.IdGenerator;
 import com.teambind.supportserver.inquiries.dto.request.AnswerCreateRequest;
 import com.teambind.supportserver.inquiries.dto.request.InquiryCreateRequest;
 import com.teambind.supportserver.inquiries.dto.response.AnswerResponse;
@@ -30,6 +31,7 @@ public class InquiryServiceImpl implements InquiryService {
 
 	private final InquiryRepository inquiryRepository;
 	private final AnswerRepository answerRepository;
+	private final IdGenerator idGenerator;
 
 	@Override
 	@Transactional
@@ -38,7 +40,7 @@ public class InquiryServiceImpl implements InquiryService {
 				request.getTitle(), request.getCategory(), request.getWriterId());
 
 		Inquiry inquiry = Inquiry.builder()
-				.id(UUID.randomUUID().toString())
+				.id(idGenerator.generateId())
 				.title(request.getTitle())
 				.contents(request.getContents())
 				.category(request.getCategory())
@@ -117,7 +119,7 @@ public class InquiryServiceImpl implements InquiryService {
 				.orElseThrow(() -> new InquiryException(ErrorCode.INQUIRY_NOT_FOUND));
 
 		Answer answer = Answer.builder()
-				.id(UUID.randomUUID().toString())
+				.id(idGenerator.generateId())
 				.inquiry(inquiry)
 				.writerId(request.getWriterId())
 				.contents(request.getContents())
