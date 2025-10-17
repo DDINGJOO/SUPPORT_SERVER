@@ -1,4 +1,4 @@
-package com.teambind.supportserver.report.handler;
+package com.teambind.supportserver.common.handler;
 
 import com.teambind.supportserver.report.exceptions.ReportException;
 import org.springframework.http.ResponseEntity;

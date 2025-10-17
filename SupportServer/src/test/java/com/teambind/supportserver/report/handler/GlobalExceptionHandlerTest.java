@@ -1,5 +1,6 @@
 package com.teambind.supportserver.report.handler;
 
+import com.teambind.supportserver.common.handler.GlobalExceptionHandler;
 import com.teambind.supportserver.report.exceptions.ErrorCode;
 import com.teambind.supportserver.report.exceptions.ReportException;
 import org.junit.jupiter.api.DisplayName;
